@@ -1,7 +1,9 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ShoppingBasket, Wallet, BarChart3, LogOut } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
+import { useWorkspace } from "@/contexts/WorkspaceContext";
 import { Button } from "@/components/ui/button";
+import ShareDialog from "./ShareDialog";
 import { toast } from "sonner";
 
 interface HeaderProps {
@@ -10,6 +12,9 @@ interface HeaderProps {
 
 const Header = ({ grandTotal }: HeaderProps) => {
   const { user, signOut } = useAuth();
+  const { workspaces, activeOwnerUid } = useWorkspace();
+  const navigate = useNavigate();
+  const activeWorkspace = workspaces.find((w) => w.ownerUid === activeOwnerUid);
 
   const handleSignOut = async () => {
     try {
