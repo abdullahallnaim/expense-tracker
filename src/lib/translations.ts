@@ -1,0 +1,202 @@
+export const translations = {
+  bn: {
+    // Brand & generic
+    appName: "বাজার খরচ",
+    loading: "লোড হচ্ছে...",
+    signIn: "সাইন ইন",
+    signOut: "সাইন আউট",
+    signInSuccess: "সাইন ইন সফল হয়েছে",
+    signInFailed: "সাইন ইন ব্যর্থ হয়েছে",
+    signOutSuccess: "সাইন আউট হয়েছে",
+    signOutFailed: "সাইন আউট ব্যর্থ হয়েছে",
+    app: "অ্যাপ",
+    save: "সংরক্ষণ",
+    cancel: "বাতিল",
+    delete: "মুছুন",
+
+    // Home page
+    homeBadge: "একসাথে পরিবারের বাজেট ম্যানেজ করুন",
+    homeHero1: "আপনার দৈনিক বাজার খরচ",
+    homeHeroAccent: "সহজে",
+    homeHero2: "ট্র্যাক করুন",
+    homeSubtitle: "তারিখ ও ক্যাটাগরি অনুযায়ী খরচ যোগ করুন, পরিবারের সদস্যদের সাথে শেয়ার করুন, এবং সুন্দর ড্যাশবোর্ডে মাসিক রিপোর্ট দেখুন।",
+    googleStart: "Google দিয়ে শুরু করুন",
+    googleSignIn: "Google দিয়ে সাইন ইন",
+    freeNoCard: "ফ্রি · কোনো কার্ড লাগবে না",
+    sampleDate: "১৫ এপ্রিল ২০২৬",
+    totalLabel: "মোট",
+    featuresTitle: "সবকিছু এক জায়গায়",
+    featuresSubtitle: "সহজ, দ্রুত এবং পরিবার-বান্ধব খরচ ট্র্যাকার",
+    featShareTitle: "পরিবারের সাথে শেয়ার",
+    featShareDesc: "ইমেইল দিয়ে সদস্য যোগ করুন — সবাই একই খরচের তালিকায় আইটেম যোগ ও মুছতে পারবে।",
+    featDashTitle: "সুন্দর ড্যাশবোর্ড",
+    featDashDesc: "মাস ও ক্যাটাগরি অনুযায়ী চার্ট দেখুন — কোথায় বেশি খরচ হচ্ছে সহজেই বুঝুন।",
+    featSyncTitle: "সব ডিভাইসে সিঙ্ক",
+    featSyncDesc: "ক্লাউডে নিরাপদে সংরক্ষিত — মোবাইল, ট্যাবলেট, কম্পিউটার সব জায়গায় একই ডাটা।",
+    ctaTitle: "আজই শুরু করুন",
+    ctaDesc: "শুধু Google দিয়ে সাইন ইন — কোনো পাসওয়ার্ড মনে রাখার ঝামেলা নেই।",
+
+    // Header
+    headerSubtitleDefault: "দৈনিক হিসাব রাখুন",
+    grandTotal: "মোট খরচ",
+    dashboard: "ড্যাশবোর্ড",
+    share: "শেয়ার করুন",
+
+    // Add date / item
+    datePlaceholder: "তারিখ লিখুন (যেমন: ১.২.২৬)",
+    addDate: "তারিখ যোগ করুন",
+    itemNamePlaceholder: "আইটেমের নাম",
+    amountPlaceholder: "টাকা",
+    pickCategory: "ক্যাটাগরি বাছুন",
+
+    // Day card
+    noItemsYet: "এখনো কোনো আইটেম যোগ হয়নি",
+    dayTotal: "মোট",
+
+    // Categories
+    categoriesTitle: "ক্যাটাগরি",
+    categoriesCount: "{n}টি",
+    newCategoryPlaceholder: "নতুন ক্যাটাগরি",
+    uncategorized: "অশ্রেণিভুক্ত",
+
+    // Monthly summary
+    monthlyExpense: "মাসিক খরচ",
+    clearFilter: "ফিল্টার বাদ দিন",
+    daysCount: "{n} দিন",
+    showingDays: "{n} দিনের খরচ দেখাচ্ছে",
+    noExpensesMonth: "এই মাসে কোনো খরচ নেই",
+    noExpenses: "কোনো খরচ নেই",
+    addDateToStart: "উপরে তারিখ যোগ করে শুরু করুন",
+
+    // Dashboard
+    backToApp: "অ্যাপে ফিরুন",
+    chartByCategory: "ক্যাটাগরি অনুযায়ী খরচ",
+    chartByMonth: "মাস অনুযায়ী খরচ",
+    chartByMonthCategory: "মাস ও ক্যাটাগরি ভিত্তিক",
+    noData: "কোনো ডাটা নেই",
+
+    // Share dialog
+    shareTitle: "ওয়ার্কস্পেস ও শেয়ার",
+    shareDesc: "পরিবারের সদস্যদের ইমেইল দিয়ে যোগ করুন — তারা আপনার তালিকায় খরচ যোগ ও মুছতে পারবেন।",
+    pickWorkspace: "ওয়ার্কস্পেস বাছুন",
+    addNewMember: "নতুন সদস্য যোগ করুন",
+    add: "যোগ",
+    members: "সদস্যবৃন্দ ({n})",
+    youAreMember: "আপনি একজন সদস্য হিসেবে এই ওয়ার্কস্পেস ব্যবহার করছেন।",
+    inviteSuccess: "{email} কে যোগ করা হয়েছে",
+    inviteFailed: "যোগ করতে ব্যর্থ",
+    memberRemoved: "সদস্য সরানো হয়েছে",
+    removeFailed: "সরাতে ব্যর্থ",
+
+    // Default categories
+    catTransport: "পরিবহন",
+    catVeggies: "সবজি",
+    catSpices: "মশলা",
+    catOil: "তেল/ঘি",
+    catFruits: "ফল",
+    catOther: "অন্যান্য",
+
+    // Currency
+    currency: "৳",
+
+    // Language
+    language: "ভাষা",
+    bengali: "বাংলা",
+    english: "English",
+  },
+  en: {
+    appName: "Bazar Khoroch",
+    loading: "Loading...",
+    signIn: "Sign in",
+    signOut: "Sign out",
+    signInSuccess: "Signed in successfully",
+    signInFailed: "Sign in failed",
+    signOutSuccess: "Signed out",
+    signOutFailed: "Sign out failed",
+    app: "App",
+    save: "Save",
+    cancel: "Cancel",
+    delete: "Delete",
+
+    homeBadge: "Manage your family budget together",
+    homeHero1: "Track your daily market expenses",
+    homeHeroAccent: "easily",
+    homeHero2: "",
+    homeSubtitle: "Add expenses by date and category, share with family members, and view monthly reports in a beautiful dashboard.",
+    googleStart: "Get started with Google",
+    googleSignIn: "Sign in with Google",
+    freeNoCard: "Free · No card required",
+    sampleDate: "April 15, 2026",
+    totalLabel: "Total",
+    featuresTitle: "Everything in one place",
+    featuresSubtitle: "Simple, fast and family-friendly expense tracker",
+    featShareTitle: "Share with family",
+    featShareDesc: "Invite members by email — everyone can add and delete items in the same expense list.",
+    featDashTitle: "Beautiful dashboard",
+    featDashDesc: "See charts by month and category — easily understand where you spend the most.",
+    featSyncTitle: "Sync across devices",
+    featSyncDesc: "Securely stored in the cloud — same data on mobile, tablet, and computer.",
+    ctaTitle: "Start today",
+    ctaDesc: "Just sign in with Google — no passwords to remember.",
+
+    headerSubtitleDefault: "Track your daily expenses",
+    grandTotal: "Grand total",
+    dashboard: "Dashboard",
+    share: "Share",
+
+    datePlaceholder: "Enter date (e.g. 1.2.26)",
+    addDate: "Add date",
+    itemNamePlaceholder: "Item name",
+    amountPlaceholder: "Amount",
+    pickCategory: "Pick a category",
+
+    noItemsYet: "No items added yet",
+    dayTotal: "Total",
+
+    categoriesTitle: "Categories",
+    categoriesCount: "{n}",
+    newCategoryPlaceholder: "New category",
+    uncategorized: "Uncategorized",
+
+    monthlyExpense: "Monthly expenses",
+    clearFilter: "Clear filter",
+    daysCount: "{n} days",
+    showingDays: "Showing {n} days of expenses",
+    noExpensesMonth: "No expenses this month",
+    noExpenses: "No expenses yet",
+    addDateToStart: "Add a date above to get started",
+
+    backToApp: "Back to app",
+    chartByCategory: "Expenses by category",
+    chartByMonth: "Expenses by month",
+    chartByMonthCategory: "By month and category",
+    noData: "No data",
+
+    shareTitle: "Workspace & sharing",
+    shareDesc: "Invite family members by email — they can add and delete expenses in your list.",
+    pickWorkspace: "Pick a workspace",
+    addNewMember: "Add a new member",
+    add: "Add",
+    members: "Members ({n})",
+    youAreMember: "You are using this workspace as a member.",
+    inviteSuccess: "Invited {email}",
+    inviteFailed: "Failed to invite",
+    memberRemoved: "Member removed",
+    removeFailed: "Failed to remove",
+
+    catTransport: "Transport",
+    catVeggies: "Vegetables",
+    catSpices: "Spices",
+    catOil: "Oil/Ghee",
+    catFruits: "Fruits",
+    catOther: "Other",
+
+    currency: "৳",
+
+    language: "Language",
+    bengali: "বাংলা",
+    english: "English",
+  },
+} as const;
+
+export type TranslationKey = keyof (typeof translations)["bn"];
