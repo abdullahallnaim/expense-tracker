@@ -11,6 +11,7 @@ import {
 } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { useAuth } from "@/contexts/AuthContext";
+import { useWorkspace } from "@/contexts/WorkspaceContext";
 import type { DayExpense, ExpenseItem, Category } from "@/types/expense";
 
 const generateId = () => Math.random().toString(36).substring(2, 9);
@@ -26,19 +27,22 @@ const defaultCategories: Omit<Category, "id">[] = [
 
 export const useExpenses = () => {
   const { user } = useAuth();
+  const { activeOwnerUid, isOwner } = useWorkspace();
+  const ownerUid = activeOwnerUid || user?.uid || null;
+
   const [expenses, setExpenses] = useState<DayExpense[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
 
   // Subscribe to expenses
   useEffect(() => {
-    if (!user) {
+    if (!ownerUid) {
       setExpenses([]);
       setLoading(false);
       return;
     }
 
-    const expensesRef = collection(db, "users", user.uid, "expenses");
+    const expensesRef = collection(db, "users", ownerUid, "expenses");
     const q = query(expensesRef, orderBy("createdAt", "desc"));
 
     const unsub = onSnapshot(q, (snap) => {
@@ -55,20 +59,19 @@ export const useExpenses = () => {
     });
 
     return () => unsub();
-  }, [user]);
+  }, [ownerUid]);
 
-  // Subscribe to categories (seed defaults if empty)
+  // Subscribe to categories (seed defaults if empty AND viewer is the owner)
   useEffect(() => {
-    if (!user) {
+    if (!ownerUid) {
       setCategories([]);
       return;
     }
 
-    const catsRef = collection(db, "users", user.uid, "categories");
+    const catsRef = collection(db, "users", ownerUid, "categories");
 
     const unsub = onSnapshot(catsRef, async (snap) => {
-      if (snap.empty) {
-        // Seed defaults
+      if (snap.empty && isOwner) {
         const batch = writeBatch(db);
         defaultCategories.forEach((c) => {
           const id = generateId();
@@ -85,12 +88,12 @@ export const useExpenses = () => {
     });
 
     return () => unsub();
-  }, [user]);
+  }, [ownerUid, isOwner]);
 
   const addDate = async (date: string) => {
-    if (!user) return;
+    if (!ownerUid) return;
     const id = generateId();
-    await setDoc(doc(db, "users", user.uid, "expenses", id), {
+    await setDoc(doc(db, "users", ownerUid, "expenses", id), {
       date,
       items: [],
       createdAt: Date.now(),
@@ -98,8 +101,8 @@ export const useExpenses = () => {
   };
 
   const deleteDate = async (dayId: string) => {
-    if (!user) return;
-    await deleteDoc(doc(db, "users", user.uid, "expenses", dayId));
+    if (!ownerUid) return;
+    await deleteDoc(doc(db, "users", ownerUid, "expenses", dayId));
   };
 
   const addItem = async (
@@ -108,34 +111,34 @@ export const useExpenses = () => {
     amount: number,
     categoryId?: string
   ) => {
-    if (!user) return;
+    if (!ownerUid) return;
     const day = expenses.find((d) => d.id === dayId);
     if (!day) return;
     const newItem: ExpenseItem = { id: generateId(), name, amount, categoryId };
     await setDoc(
-      doc(db, "users", user.uid, "expenses", dayId),
+      doc(db, "users", ownerUid, "expenses", dayId),
       { items: [...day.items, newItem] },
       { merge: true }
     );
   };
 
   const deleteItem = async (dayId: string, itemId: string) => {
-    if (!user) return;
+    if (!ownerUid) return;
     const day = expenses.find((d) => d.id === dayId);
     if (!day) return;
     await setDoc(
-      doc(db, "users", user.uid, "expenses", dayId),
+      doc(db, "users", ownerUid, "expenses", dayId),
       { items: day.items.filter((i) => i.id !== itemId) },
       { merge: true }
     );
   };
 
   const addCategory = async (name: string) => {
-    if (!user) return;
+    if (!ownerUid) return;
     const hue = Math.floor(Math.random() * 360);
     const id = generateId();
     const newCat: Category = { id, name, color: `hsl(${hue}, 60%, 50%)` };
-    await setDoc(doc(db, "users", user.uid, "categories", id), {
+    await setDoc(doc(db, "users", ownerUid, "categories", id), {
       name: newCat.name,
       color: newCat.color,
     });
@@ -143,8 +146,8 @@ export const useExpenses = () => {
   };
 
   const deleteCategory = async (catId: string) => {
-    if (!user) return;
-    await deleteDoc(doc(db, "users", user.uid, "categories", catId));
+    if (!ownerUid) return;
+    await deleteDoc(doc(db, "users", ownerUid, "categories", catId));
   };
 
   const grandTotal = expenses.reduce(
