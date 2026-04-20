@@ -12,7 +12,14 @@ import {
 import { db } from "@/lib/firebase";
 import { useAuth } from "@/contexts/AuthContext";
 import { useWorkspace } from "@/contexts/WorkspaceContext";
-import type { DayExpense, ExpenseItem, Category } from "@/types/expense";
+import type {
+  DayExpense,
+  ExpenseItem,
+  Category,
+  CategoryBudget,
+  IncomeEntry,
+  MonthIncome,
+} from "@/types/expense";
 
 const generateId = () => Math.random().toString(36).substring(2, 9);
 
@@ -32,6 +39,8 @@ export const useExpenses = () => {
 
   const [expenses, setExpenses] = useState<DayExpense[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
+  const [budgets, setBudgets] = useState<CategoryBudget[]>([]);
+  const [incomes, setIncomes] = useState<MonthIncome[]>([]);
   const [loading, setLoading] = useState(true);
 
   // Subscribe to expenses
@@ -61,7 +70,7 @@ export const useExpenses = () => {
     return () => unsub();
   }, [ownerUid]);
 
-  // Subscribe to categories (seed defaults if empty AND viewer is the owner)
+  // Categories
   useEffect(() => {
     if (!ownerUid) {
       setCategories([]);
@@ -89,6 +98,40 @@ export const useExpenses = () => {
 
     return () => unsub();
   }, [ownerUid, isOwner]);
+
+  // Budgets (per month, per category)
+  useEffect(() => {
+    if (!ownerUid) {
+      setBudgets([]);
+      return;
+    }
+    const ref = collection(db, "users", ownerUid, "budgets");
+    const unsub = onSnapshot(ref, (snap) => {
+      const data: CategoryBudget[] = snap.docs.map((d) => {
+        const raw = d.data() as Omit<CategoryBudget, "id">;
+        return { id: d.id, ...raw };
+      });
+      setBudgets(data);
+    });
+    return () => unsub();
+  }, [ownerUid]);
+
+  // Incomes (per month doc, with entries[] inside)
+  useEffect(() => {
+    if (!ownerUid) {
+      setIncomes([]);
+      return;
+    }
+    const ref = collection(db, "users", ownerUid, "incomes");
+    const unsub = onSnapshot(ref, (snap) => {
+      const data: MonthIncome[] = snap.docs.map((d) => {
+        const raw = d.data() as { entries?: IncomeEntry[] };
+        return { monthKey: d.id, entries: raw.entries || [] };
+      });
+      setIncomes(data);
+    });
+    return () => unsub();
+  }, [ownerUid]);
 
   const addDate = async (date: string) => {
     if (!ownerUid) return;
@@ -150,6 +193,56 @@ export const useExpenses = () => {
     await deleteDoc(doc(db, "users", ownerUid, "categories", catId));
   };
 
+  // ---- Budgets ----
+  const setBudget = async (monthKey: string, categoryId: string, amount: number) => {
+    if (!ownerUid) return;
+    const id = `${monthKey}_${categoryId}`;
+    if (!amount || amount <= 0) {
+      await deleteDoc(doc(db, "users", ownerUid, "budgets", id));
+      return;
+    }
+    await setDoc(doc(db, "users", ownerUid, "budgets", id), {
+      monthKey,
+      categoryId,
+      amount,
+    });
+  };
+
+  const clearBudget = async (monthKey: string, categoryId: string) => {
+    if (!ownerUid) return;
+    const id = `${monthKey}_${categoryId}`;
+    await deleteDoc(doc(db, "users", ownerUid, "budgets", id));
+  };
+
+  // ---- Incomes ----
+  const getMonthIncome = (monthKey: string): IncomeEntry[] =>
+    incomes.find((i) => i.monthKey === monthKey)?.entries || [];
+
+  const addIncome = async (monthKey: string, source: string, amount: number) => {
+    if (!ownerUid) return;
+    const current = getMonthIncome(monthKey);
+    const next: IncomeEntry[] = [
+      ...current,
+      { id: generateId(), source, amount },
+    ];
+    await setDoc(
+      doc(db, "users", ownerUid, "incomes", monthKey),
+      { entries: next },
+      { merge: true }
+    );
+  };
+
+  const deleteIncome = async (monthKey: string, entryId: string) => {
+    if (!ownerUid) return;
+    const current = getMonthIncome(monthKey);
+    const next = current.filter((e) => e.id !== entryId);
+    await setDoc(
+      doc(db, "users", ownerUid, "incomes", monthKey),
+      { entries: next },
+      { merge: true }
+    );
+  };
+
   const grandTotal = expenses.reduce(
     (total, day) => total + day.items.reduce((sum, item) => sum + item.amount, 0),
     0
@@ -158,6 +251,8 @@ export const useExpenses = () => {
   return {
     expenses,
     categories,
+    budgets,
+    incomes,
     grandTotal,
     loading,
     addDate,
@@ -166,5 +261,10 @@ export const useExpenses = () => {
     deleteItem,
     addCategory,
     deleteCategory,
+    setBudget,
+    clearBudget,
+    getMonthIncome,
+    addIncome,
+    deleteIncome,
   };
 };

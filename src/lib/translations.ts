@@ -44,6 +44,7 @@ export const translations = {
 
     // Add date / item
     datePlaceholder: "তারিখ লিখুন (যেমন: ১.২.২৬)",
+    pickDate: "তারিখ বাছুন",
     addDate: "তারিখ যোগ করুন",
     itemNamePlaceholder: "আইটেমের নাম",
     amountPlaceholder: "টাকা",
@@ -96,6 +97,28 @@ export const translations = {
     catFruits: "ফল",
     catOther: "অন্যান্য",
 
+    // Overview
+    overview: "ওভারভিউ",
+    selectMonth: "মাস বাছুন",
+    totalIncome: "মোট আয়",
+    totalExpense: "মোট খরচ",
+    balance: "অবশিষ্ট",
+    expenseVsIncome: "আয়ের তুলনায় খরচ",
+    incomeExceeded: "আপনার খরচ আয়কে ছাড়িয়ে গেছে",
+    incomeRemaining: "{n} অবশিষ্ট আছে",
+    monthlyIncome: "মাসিক আয়",
+    incomeSourcePlaceholder: "আয়ের উৎস (যেমন: বেতন)",
+    noIncomeYet: "এই মাসে কোনো আয় যোগ হয়নি",
+    categoryBudgets: "ক্যাটাগরি বাজেট",
+    budgetOptionalHint: "ঐচ্ছিক — শুধু যেসব ক্যাটাগরির বাজেট দিতে চান, সেগুলো পূরণ করুন",
+    budgetPlaceholder: "বাজেট",
+    spent: "খরচ হয়েছে",
+    noBudgetSet: "বাজেট নেই",
+    exceeded: "সীমা ছাড়িয়েছে",
+    withinBudget: "সীমার মধ্যে",
+    totalBudget: "মোট বাজেট",
+    noCategoriesYet: "কোনো ক্যাটাগরি নেই",
+
     // Currency
     currency: "৳",
 
@@ -145,6 +168,7 @@ export const translations = {
     share: "Share",
 
     datePlaceholder: "Enter date (e.g. 1.2.26)",
+    pickDate: "Pick a date",
     addDate: "Add date",
     itemNamePlaceholder: "Item name",
     amountPlaceholder: "Amount",
@@ -190,6 +214,27 @@ export const translations = {
     catOil: "Oil/Ghee",
     catFruits: "Fruits",
     catOther: "Other",
+
+    overview: "Overview",
+    selectMonth: "Select month",
+    totalIncome: "Total income",
+    totalExpense: "Total expense",
+    balance: "Balance",
+    expenseVsIncome: "Expense vs income",
+    incomeExceeded: "Your expenses have exceeded your income",
+    incomeRemaining: "{n} remaining",
+    monthlyIncome: "Monthly income",
+    incomeSourcePlaceholder: "Income source (e.g. Salary)",
+    noIncomeYet: "No income added for this month",
+    categoryBudgets: "Category budgets",
+    budgetOptionalHint: "Optional — only fill in budgets for the categories you want to track",
+    budgetPlaceholder: "Budget",
+    spent: "Spent",
+    noBudgetSet: "no budget set",
+    exceeded: "exceeded",
+    withinBudget: "within budget",
+    totalBudget: "Total budget",
+    noCategoriesYet: "No categories yet",
 
     currency: "৳",
 
