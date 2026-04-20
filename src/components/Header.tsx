@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { ShoppingBasket, Wallet, BarChart3, LogOut } from "lucide-react";
+import { ShoppingBasket, Wallet, BarChart3, LogOut, Target } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import { useWorkspace } from "@/contexts/WorkspaceContext";
 import { useLang } from "@/contexts/LanguageContext";
@@ -49,6 +49,13 @@ const Header = ({ grandTotal }: HeaderProps) => {
           <div className="flex items-center gap-1 sm:gap-2 shrink-0">
             <LanguageToggle variant="icon" />
             <ShareDialog />
+            <Link
+              to="/overview"
+              className="p-2.5 rounded-xl bg-primary/10 hover:bg-primary/20 transition-colors"
+              title={t("overview")}
+            >
+              <Target className="h-5 w-5 text-primary" />
+            </Link>
             <Link
               to="/dashboard"
               className="p-2.5 rounded-xl bg-secondary/10 hover:bg-secondary/20 transition-colors"
