@@ -21,6 +21,16 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 import { useExpenses } from "@/hooks/useExpenses";
 import { parseDate } from "@/components/MonthlySummary";
 import { useLang } from "@/contexts/LanguageContext";
@@ -124,6 +134,7 @@ const Overview = () => {
   // Income form
   const [incomeSource, setIncomeSource] = useState("");
   const [incomeAmount, setIncomeAmount] = useState("");
+  const [pendingDeleteIncome, setPendingDeleteIncome] = useState<string | null>(null);
 
   const handleAddIncome = (e: React.FormEvent) => {
     e.preventDefault();
@@ -289,7 +300,7 @@ const Overview = () => {
                       variant="ghost"
                       size="icon"
                       className="h-8 w-8 text-muted-foreground hover:text-destructive"
-                      onClick={() => deleteIncome(activeKey, e.id)}
+                      onClick={() => setPendingDeleteIncome(e.id)}
                     >
                       <Trash2 className="h-4 w-4" />
                     </Button>
