@@ -416,6 +416,30 @@ const Overview = () => {
           )}
         </div>
       </main>
+
+      <AlertDialog
+        open={!!pendingDeleteIncome}
+        onOpenChange={(o) => !o && setPendingDeleteIncome(null)}
+      >
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>{t("confirmDeleteTitle")}</AlertDialogTitle>
+            <AlertDialogDescription>{t("confirmDeleteIncomeDesc")}</AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>{t("cancel")}</AlertDialogCancel>
+            <AlertDialogAction
+              onClick={() => {
+                if (pendingDeleteIncome) deleteIncome(activeKey, pendingDeleteIncome);
+                setPendingDeleteIncome(null);
+              }}
+              className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+            >
+              {t("delete")}
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 };
