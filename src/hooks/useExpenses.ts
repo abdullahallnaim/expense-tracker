@@ -305,6 +305,7 @@ export const useExpenses = () => {
     clearBudget,
     getMonthIncome,
     addIncome,
+    editIncome,
     deleteIncome,
   };
 };
