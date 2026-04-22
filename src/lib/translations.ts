@@ -20,6 +20,7 @@ export const translations = {
     confirmDeleteItemDesc: "এই আইটেমটি স্থায়ীভাবে মুছে যাবে।",
     confirmDeleteIncomeDesc: "এই আয়ের এন্ট্রি স্থায়ীভাবে মুছে যাবে।",
     editItemTitle: "আইটেম এডিট করুন",
+    editIncomeTitle: "আয় এডিট করুন",
 
     // Home page
     homeBadge: "একসাথে পরিবারের বাজেট ম্যানেজ করুন",
