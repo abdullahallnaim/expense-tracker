@@ -32,6 +32,13 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { useExpenses } from "@/hooks/useExpenses";
 import { parseDate } from "@/components/MonthlySummary";
 import { useLang } from "@/contexts/LanguageContext";
