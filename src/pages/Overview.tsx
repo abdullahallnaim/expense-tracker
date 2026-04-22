@@ -52,6 +52,7 @@ const Overview = () => {
     incomes,
     setBudget,
     addIncome,
+    editIncome,
     deleteIncome,
   } = useExpenses();
   const { t, fmtNum, monthName } = useLang();
