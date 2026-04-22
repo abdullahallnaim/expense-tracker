@@ -329,6 +329,14 @@ const Overview = () => {
                     <Button
                       variant="ghost"
                       size="icon"
+                      className="h-8 w-8 text-muted-foreground hover:text-primary"
+                      onClick={() => openEditIncome(e.id, e.source, e.amount)}
+                    >
+                      <Pencil className="h-4 w-4" />
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      size="icon"
                       className="h-8 w-8 text-muted-foreground hover:text-destructive"
                       onClick={() => setPendingDeleteIncome(e.id)}
                     >
