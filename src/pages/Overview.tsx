@@ -144,6 +144,9 @@ const Overview = () => {
   const [incomeSource, setIncomeSource] = useState("");
   const [incomeAmount, setIncomeAmount] = useState("");
   const [pendingDeleteIncome, setPendingDeleteIncome] = useState<string | null>(null);
+  const [editingIncomeId, setEditingIncomeId] = useState<string | null>(null);
+  const [editIncomeSource, setEditIncomeSource] = useState("");
+  const [editIncomeAmount, setEditIncomeAmount] = useState("");
 
   const handleAddIncome = (e: React.FormEvent) => {
     e.preventDefault();
@@ -151,6 +154,24 @@ const Overview = () => {
     addIncome(activeKey, incomeSource.trim(), parseFloat(incomeAmount));
     setIncomeSource("");
     setIncomeAmount("");
+  };
+
+  const openEditIncome = (id: string, source: string, amount: number) => {
+    setEditingIncomeId(id);
+    setEditIncomeSource(source);
+    setEditIncomeAmount(String(amount));
+  };
+
+  const handleSaveIncome = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!editingIncomeId || !editIncomeSource.trim() || !editIncomeAmount) return;
+    editIncome(
+      activeKey,
+      editingIncomeId,
+      editIncomeSource.trim(),
+      parseFloat(editIncomeAmount)
+    );
+    setEditingIncomeId(null);
   };
 
   const currency = t("currency");
