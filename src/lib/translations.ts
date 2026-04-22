@@ -172,6 +172,7 @@ export const translations = {
     confirmDeleteItemDesc: "This item will be permanently deleted.",
     confirmDeleteIncomeDesc: "This income entry will be permanently deleted.",
     editItemTitle: "Edit item",
+    editIncomeTitle: "Edit income",
 
     homeBadge: "Manage your family budget together",
     homeHero1: "Track your daily market expenses",
