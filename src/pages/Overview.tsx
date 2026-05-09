@@ -181,7 +181,7 @@ const Overview = () => {
   })();
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background pb-24 sm:pb-0">
       <header className="bg-card border-b border-border sticky top-0 z-10">
         <div className="container max-w-3xl mx-auto px-4 py-4 flex items-center gap-3">
           <Link

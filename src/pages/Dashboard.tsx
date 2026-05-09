@@ -88,7 +88,7 @@ const Dashboard = () => {
   const currency = t("currency");
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background pb-24 sm:pb-0">
       <header className="bg-card border-b border-border sticky top-0 z-10">
         <div className="container max-w-2xl mx-auto px-4 py-4 flex items-center gap-3">
           <Link to="/app" className="p-2 rounded-lg hover:bg-muted transition-colors" title={t("backToApp")}>
@@ -188,6 +188,7 @@ const Dashboard = () => {
           )}
         </div>
       </main>
+      <BottomNav />
     </div>
   );
 };
