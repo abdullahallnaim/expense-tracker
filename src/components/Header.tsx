@@ -51,14 +51,14 @@ const Header = ({ grandTotal }: HeaderProps) => {
             <ShareDialog />
             <Link
               to="/overview"
-              className="p-2.5 rounded-xl bg-primary/10 hover:bg-primary/20 transition-colors"
+              className="hidden sm:inline-flex p-2.5 rounded-xl bg-primary/10 hover:bg-primary/20 transition-colors"
               title={t("overview")}
             >
               <Target className="h-5 w-5 text-primary" />
             </Link>
             <Link
               to="/dashboard"
-              className="p-2.5 rounded-xl bg-secondary/10 hover:bg-secondary/20 transition-colors"
+              className="hidden sm:inline-flex p-2.5 rounded-xl bg-secondary/10 hover:bg-secondary/20 transition-colors"
               title={t("dashboard")}
             >
               <BarChart3 className="h-5 w-5 text-secondary" />
