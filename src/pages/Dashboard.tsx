@@ -6,6 +6,7 @@ import { useExpenses } from "@/hooks/useExpenses";
 import { parseDate } from "@/components/MonthlySummary";
 import { useLang } from "@/contexts/LanguageContext";
 import LanguageToggle from "@/components/LanguageToggle";
+import BottomNav from "@/components/BottomNav";
 import type { Category } from "@/types/expense";
 
 const Dashboard = () => {
