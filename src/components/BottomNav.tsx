@@ -21,7 +21,6 @@ const BottomNav = () => {
   };
 
   const items = [
-    { to: "/", icon: Home, label: t("homeNav"), end: true },
     { to: "/app", icon: LayoutGrid, label: t("app"), end: false },
     { to: "/overview", icon: Target, label: t("overview"), end: false },
     { to: "/dashboard", icon: BarChart3, label: t("dashboard"), end: false },
