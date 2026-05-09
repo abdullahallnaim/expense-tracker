@@ -1,5 +1,5 @@
 import { NavLink, useNavigate } from "react-router-dom";
-import { Home, LayoutGrid, Target, BarChart3, LogOut } from "lucide-react";
+import { LayoutGrid, Target, BarChart3, LogOut } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import { useLang } from "@/contexts/LanguageContext";
 import { toast } from "sonner";
