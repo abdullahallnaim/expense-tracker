@@ -141,6 +141,7 @@ export const useExpenses = () => {
       items: [],
       createdAt: Date.now(),
     });
+    return id;
   };
 
   const deleteDate = async (dayId: string) => {
