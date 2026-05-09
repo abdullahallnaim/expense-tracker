@@ -74,7 +74,7 @@ const Header = ({ grandTotal }: HeaderProps) => {
               variant="ghost"
               size="icon"
               onClick={handleSignOut}
-              className="text-muted-foreground hover:text-destructive"
+              className="hidden sm:inline-flex text-muted-foreground hover:text-destructive"
               title={t("signOut")}
             >
               <LogOut className="h-5 w-5" />
