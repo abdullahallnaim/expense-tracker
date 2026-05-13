@@ -266,6 +266,7 @@ const Home = () => {
       </section>
 
       <section className="container max-w-6xl mx-auto px-4 py-16">
+        <div className="date-card p-10 md:p-14 text-center bg-gradient-to-br from-primary/10 via-accent to-secondary/10">
           <ShieldCheck className="h-10 w-10 text-primary mx-auto mb-4" />
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3">{t("ctaTitle")}</h2>
           <p className="text-muted-foreground max-w-xl mx-auto mb-7">{t("ctaDesc")}</p>
