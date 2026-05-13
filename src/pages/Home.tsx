@@ -1,5 +1,6 @@
 import { Navigate, Link } from "react-router-dom";
-import { ShoppingBasket, Users, BarChart3, CloudCog, Sparkles, ShieldCheck, ArrowRight, Target, Wallet, LayoutDashboard, CalendarDays, CheckCircle2 } from "lucide-react";
+import { ShoppingBasket, Users, BarChart3, CloudCog, Sparkles, ShieldCheck, ArrowRight, Target, Wallet, LayoutDashboard, CalendarDays, CheckCircle2, LogIn, ListPlus, LineChart, Quote, Star } from "lucide-react";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/contexts/AuthContext";
 import { useLang } from "@/contexts/LanguageContext";
@@ -161,6 +162,107 @@ const Home = () => {
             </div>
           ))}
         </div>
+      </section>
+
+      {/* Stats */}
+      <section className="container max-w-6xl mx-auto px-4 py-12">
+        <div className="text-center mb-10">
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3">{t("statsTitle")}</h2>
+          <p className="text-muted-foreground max-w-xl mx-auto">{t("statsSubtitle")}</p>
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {[
+            { num: t("stat1Num"), label: t("stat1Label") },
+            { num: t("stat2Num"), label: t("stat2Label") },
+            { num: t("stat3Num"), label: t("stat3Label") },
+            { num: t("stat4Num"), label: t("stat4Label") },
+          ].map((s) => (
+            <div key={s.label} className="date-card p-5 text-center">
+              <p className="text-2xl md:text-3xl font-bold text-primary mb-1">{s.num}</p>
+              <p className="text-sm text-muted-foreground">{s.label}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* How it works */}
+      <section className="container max-w-6xl mx-auto px-4 py-16">
+        <h2 className="text-3xl md:text-4xl font-bold text-center text-foreground mb-3">{t("howTitle")}</h2>
+        <p className="text-center text-muted-foreground mb-12 max-w-xl mx-auto">{t("howSubtitle")}</p>
+        <div className="grid md:grid-cols-3 gap-5">
+          {[
+            { icon: LogIn, title: t("how1Title"), desc: t("how1Desc"), step: 1 },
+            { icon: ListPlus, title: t("how2Title"), desc: t("how2Desc"), step: 2 },
+            { icon: LineChart, title: t("how3Title"), desc: t("how3Desc"), step: 3 },
+          ].map((s) => (
+            <div key={s.step} className="date-card p-6 relative">
+              <div className="absolute -top-3 -left-3 bg-primary text-primary-foreground w-9 h-9 rounded-full flex items-center justify-center font-bold text-sm shadow-md">
+                {fmtNum(s.step)}
+              </div>
+              <div className="bg-primary/10 w-12 h-12 rounded-xl flex items-center justify-center mb-4">
+                <s.icon className="h-6 w-6 text-primary" />
+              </div>
+              <h3 className="text-lg font-semibold text-foreground mb-2">{s.title}</h3>
+              <p className="text-muted-foreground text-sm leading-relaxed">{s.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="container max-w-6xl mx-auto px-4 py-16">
+        <h2 className="text-3xl md:text-4xl font-bold text-center text-foreground mb-3">{t("testimonialsTitle")}</h2>
+        <p className="text-center text-muted-foreground mb-12 max-w-xl mx-auto">{t("testimonialsSubtitle")}</p>
+        <div className="grid md:grid-cols-3 gap-5">
+          {[
+            { q: t("test1Quote"), n: t("test1Name"), r: t("test1Role") },
+            { q: t("test2Quote"), n: t("test2Name"), r: t("test2Role") },
+            { q: t("test3Quote"), n: t("test3Name"), r: t("test3Role") },
+          ].map((tt) => (
+            <div key={tt.n} className="date-card p-6 flex flex-col">
+              <Quote className="h-6 w-6 text-primary/40 mb-3" />
+              <div className="flex gap-1 mb-3">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="h-4 w-4 fill-primary text-primary" />
+                ))}
+              </div>
+              <p className="text-foreground mb-5 leading-relaxed flex-1">"{tt.q}"</p>
+              <div className="flex items-center gap-3 pt-4 border-t border-border">
+                <div className="bg-primary/10 w-10 h-10 rounded-full flex items-center justify-center font-bold text-primary">
+                  {tt.n.charAt(0)}
+                </div>
+                <div>
+                  <p className="font-semibold text-foreground text-sm">{tt.n}</p>
+                  <p className="text-xs text-muted-foreground">{tt.r}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="container max-w-3xl mx-auto px-4 py-16">
+        <h2 className="text-3xl md:text-4xl font-bold text-center text-foreground mb-3">{t("faqTitle")}</h2>
+        <p className="text-center text-muted-foreground mb-10">{t("faqSubtitle")}</p>
+        <Accordion type="single" collapsible className="date-card px-6">
+          {[
+            { q: t("faq1Q"), a: t("faq1A") },
+            { q: t("faq2Q"), a: t("faq2A") },
+            { q: t("faq3Q"), a: t("faq3A") },
+            { q: t("faq4Q"), a: t("faq4A") },
+            { q: t("faq5Q"), a: t("faq5A") },
+          ].map((f, i) => (
+            <AccordionItem key={i} value={`item-${i}`}>
+              <AccordionTrigger className="text-left text-foreground font-medium hover:no-underline">
+                {f.q}
+              </AccordionTrigger>
+              <AccordionContent className="text-muted-foreground leading-relaxed">
+                {f.a}
+              </AccordionContent>
+            </AccordionItem>
+          ))}
+        </Accordion>
       </section>
 
       <section className="container max-w-6xl mx-auto px-4 py-16">
