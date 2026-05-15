@@ -42,10 +42,8 @@ const DayCard = ({ dayExpense, categories, onAddItem, onEditItem, onDeleteItem, 
     const year = yearShort < 50 ? 2000 + yearShort : 1900 + yearShort;
     const date = new Date(year, month - 1, day);
     if (isNaN(date.getTime())) return "";
-    const dayNames: Array<keyof ReturnType<typeof useLang>["t"]> = [
-      "daySun", "dayMon", "dayTue", "dayWed", "dayThu", "dayFri", "daySat",
-    ];
-    return t(dayNames[date.getDay()]);
+    const dayKey = (["daySun", "dayMon", "dayTue", "dayWed", "dayThu", "dayFri", "daySat"] as const)[date.getDay()];
+    return t(dayKey);
   };
 
   const dayName = getDayName(dayExpense.date);
