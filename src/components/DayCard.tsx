@@ -56,9 +56,9 @@ const DayCard = ({ dayExpense, categories, onAddItem, onEditItem, onDeleteItem, 
           <h3 className="text-lg font-semibold text-foreground">
             {dayExpense.date}
             {dayName && (
-              <span className="text-muted-foreground font-normal ml-1.5">
-                ({dayName})
-              </span>
+              <sup className="text-muted-foreground font-normal text-xs ml-1">
+                {dayName}
+              </sup>
             )}
           </h3>
         </div>
