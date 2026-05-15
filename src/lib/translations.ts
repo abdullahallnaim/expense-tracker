@@ -201,6 +201,15 @@ export const translations = {
     language: "ভাষা",
     bengali: "বাংলা",
     english: "English",
+
+    // Day names
+    daySun: "রবিবার",
+    dayMon: "সোমবার",
+    dayTue: "মঙ্গলবার",
+    dayWed: "বুধবার",
+    dayThu: "বৃহস্পতিবার",
+    dayFri: "শুক্রবার",
+    daySat: "শনিবার",
   },
   en: {
     appName: "Bazar Khoroch",
