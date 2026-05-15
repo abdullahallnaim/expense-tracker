@@ -53,7 +53,14 @@ const DayCard = ({ dayExpense, categories, onAddItem, onEditItem, onDeleteItem, 
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
           <Calendar className="h-5 w-5 text-primary" />
-          <h3 className="text-lg font-semibold text-foreground">{dayExpense.date}</h3>
+          <h3 className="text-lg font-semibold text-foreground">
+            {dayExpense.date}
+            {dayName && (
+              <span className="text-muted-foreground font-normal ml-1.5">
+                ({dayName})
+              </span>
+            )}
+          </h3>
         </div>
         <div className="flex items-center gap-3">
           <div className="total-badge">
