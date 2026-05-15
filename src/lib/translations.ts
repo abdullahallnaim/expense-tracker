@@ -395,6 +395,15 @@ export const translations = {
     language: "Language",
     bengali: "বাংলা",
     english: "English",
+
+    // Day names
+    daySun: "Sunday",
+    dayMon: "Monday",
+    dayTue: "Tuesday",
+    dayWed: "Wednesday",
+    dayThu: "Thursday",
+    dayFri: "Friday",
+    daySat: "Saturday",
   },
 } as const;
 
