@@ -30,6 +30,26 @@ const DayCard = ({ dayExpense, categories, onAddItem, onEditItem, onDeleteItem, 
   const { t, fmtNum } = useLang();
   const [confirmOpen, setConfirmOpen] = useState(false);
 
+  // Parse day name from date string (format: D.M.YY with Bengali numerals)
+  const bnToEnDigits = (s: string) =>
+    s.replace(/[০-৯]/g, (d) => "০১২৩৪৫৬৭৮৯".indexOf(d).toString());
+
+  const getDayName = (dateStr: string): string => {
+    const clean = bnToEnDigits(dateStr);
+    const parts = clean.split(".").map((p) => parseInt(p));
+    if (parts.length < 2 || parts.some(isNaN)) return "";
+    const [day, month, yearShort = 0] = parts;
+    const year = yearShort < 50 ? 2000 + yearShort : 1900 + yearShort;
+    const date = new Date(year, month - 1, day);
+    if (isNaN(date.getTime())) return "";
+    const dayNames: Array<keyof ReturnType<typeof useLang>["t"]> = [
+      "daySun", "dayMon", "dayTue", "dayWed", "dayThu", "dayFri", "daySat",
+    ];
+    return t(dayNames[date.getDay()]);
+  };
+
+  const dayName = getDayName(dayExpense.date);
+
   return (
     <div className="date-card p-5 animate-fade-in">
       <div className="flex items-center justify-between mb-4">
